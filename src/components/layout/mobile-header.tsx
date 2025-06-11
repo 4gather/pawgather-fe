@@ -20,7 +20,7 @@ interface MobileHeaderProps {
   onNotificationClick?: () => void;
 }
 
-export default function MobileHeader({
+export function MobileHeader({
   title = '포게더',
   showSearch = true,
   showNotification = true,

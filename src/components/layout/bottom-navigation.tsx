@@ -21,13 +21,13 @@ interface BottomNavigationProps {
 
 const defaultItems: NavItem[] = [
   { href: '/', icon: Home, label: '홈' },
-  { href: '/calender', icon: CalendarDays, label: '일정' },
+  { href: '/calendar', icon: CalendarDays, label: '일정' },
   { href: '/list', icon: List, label: '목록' },
   { href: '/favorites', icon: Heart, label: '관심' },
   { href: '/mypage', icon: User, label: '마이' },
 ];
 
-export default function BottomNavigation({
+export function BottomNavigation({
   items = defaultItems,
   className,
 }: BottomNavigationProps) {

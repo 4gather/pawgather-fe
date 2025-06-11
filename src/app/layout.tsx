@@ -5,10 +5,9 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import React from 'react';
 
+import { BottomNavigation } from '@/components/layout/bottom-navigation';
+import { MobileHeader } from '@/components/layout/mobile-header';
 import { cn } from '@/shared/lib/utils';
-
-import BottomNavigation from './components/layout/bottom-navigation';
-import MobileHeader from './components/layout/mobile-header';
 
 const inter = Inter({ subsets: ['latin'] });
 
