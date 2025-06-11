@@ -10,7 +10,8 @@
     "lint:fix": "next lint --fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,md,json}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,md,json}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "mock": "json-server --watch src/mock/db.json --port 4000"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
@@ -48,6 +49,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-unused-imports": "^4.1.4",
     "husky": "^9.1.7",
+    "json-server": "^1.0.0-beta.3",
     "lint-staged": "^16.1.0",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
