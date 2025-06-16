@@ -11,7 +11,6 @@ interface NavItem {
   href: string;
   icon: React.ElementType;
   label: string;
-  isSpecial?: boolean; // 특별한 스타일링을 위한 플래그 (예: 플러스 버튼)
 }
 
 interface BottomNavigationProps {
@@ -54,8 +53,7 @@ export function BottomNavigation({
                 'min-h-[60px] rounded-lg', // 터치 영역 확보
                 isActive
                   ? 'text-primary'
-                  : 'text-muted-foreground hover:text-foreground',
-                item.isSpecial && 'relative' // 특별한 아이템을 위한 클래스
+                  : 'text-muted-foreground hover:text-foreground'
               )}
             >
               <div
@@ -77,11 +75,6 @@ export function BottomNavigation({
               >
                 {item.label}
               </span>
-
-              {/* 활성 상태 인디케이터 */}
-              {isActive && !item.isSpecial && (
-                <div className="bg-primary absolute bottom-0 h-0.5 w-6 rounded-full" />
-              )}
             </Link>
           );
         })}
