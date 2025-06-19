@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { EventCard } from '@/components/events/event-card';
 import { NoEvents } from '@/components/events/no-events';
 import { fetchCalendarEvents } from '@/lib/api/mock-calendar';
@@ -34,7 +36,15 @@ export default async function EventListPage() {
       {/* 이벤트 리스트 */}
       <div className="space-y-3">
         {events.length > 0 ? (
-          events.map((event) => <EventCard key={event.id} event={event} />)
+          events.map((event) => (
+            <Link
+              key={event.id}
+              href={`/detail?id=${event.id}`}
+              className="block"
+            >
+              <EventCard event={event} />
+            </Link>
+          ))
         ) : (
           <NoEvents />
         )}
