@@ -78,9 +78,9 @@ export function EventCard({ event }: Props) {
             <span>참가 가능</span>
           </div>
 
-          <button className="text-primary hover:text-primary/80 text-sm font-medium transition-colors hover:underline">
+          <span className="text-primary hover:text-primary/80 text-sm font-medium transition-colors hover:underline">
             자세히 보기
-          </button>
+          </span>
         </div>
       </div>
     </div>
