@@ -37,11 +37,7 @@ export default async function EventListPage() {
       <div className="space-y-3">
         {events.length > 0 ? (
           events.map((event) => (
-            <Link
-              key={event.id}
-              href={`/detail?id=${event.id}`}
-              className="block"
-            >
+            <Link key={event.id} href={`/detail/${event.id}`} className="block">
               <EventCard event={event} />
             </Link>
           ))

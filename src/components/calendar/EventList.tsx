@@ -34,7 +34,7 @@ export function EventList({ selectedDate }: Props) {
       {dayEvents.map((event) => (
         <Link
           key={event.id}
-          href={`/detail?id=${event.id}`}
+          href={`/detail/${event.id}`}
           className="bg-background hover:bg-accent block rounded-xl border p-4 shadow-sm transition-colors"
         >
           <h2 className="text-base font-semibold">{event.title}</h2>
