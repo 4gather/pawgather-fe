@@ -52,14 +52,14 @@ export async function NaverStaticMap({
       next: { revalidate: 3600 },
     });
 
-    // naver-static-map.tsx에 디버깅 로그 추가
-    console.log('요청 URL:', `${NAVER_API_URL}?${queryParams}`);
+    // // naver-static-map.tsx에 디버깅 로그 추가
+    // console.log('요청 URL:', `${NAVER_API_URL}?${queryParams}`);
 
-    // 환경변수 확인 로그 추가 (개발 환경에서만)
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Client ID 존재:', !!clientId);
-      console.log('Client Secret 존재:', !!clientSecret);
-    }
+    // // 환경변수 확인 로그 추가 (개발 환경에서만)
+    // if (process.env.NODE_ENV === 'development') {
+    //   console.log('Client ID 존재:', !!clientId);
+    //   console.log('Client Secret 존재:', !!clientSecret);
+    // }
 
     // 9. API 응답이 성공적이지 않으면 에러를 발생시킵니다
     if (!response.ok) {
@@ -90,10 +90,10 @@ export async function NaverStaticMap({
 
     // 13. Next.js Image 컴포넌트로 최적화된 이미지를 렌더링합니다
     return (
-      <div className="relative w-full">
+      <div className="flex w-xs flex-col gap-3">
         {/* 14. 지도 제목을 표시합니다 */}
-        <h3 className="mb-4 text-lg font-semibold text-gray-800">
-          "행사장 위치"
+        <h3 className="rounded-xs bg-neutral-300/25 p-2 pl-4 text-lg font-semibold text-gray-600">
+          오시는 길
         </h3>
 
         {/* 15. 최적화된 이미지 컴포넌트로 지도를 표시합니다 */}
@@ -103,14 +103,17 @@ export async function NaverStaticMap({
           width={width} // 이미지 가로 크기
           height={height} // 이미지 세로 크기
           priority // 중요한 이미지이므로 우선 로딩
-          className="rounded-lg border border-gray-200 shadow-lg" // 스타일링
+          className="self-center rounded-lg border border-gray-200 shadow-lg" // 스타일링
           placeholder="blur" // 로딩 중 블러 효과
           blurDataURL={SIMPLE_BLUR_DATA_URL} // 간단한 회색 블러
         />
 
         {/* 16. 지도 하단에 주소 정보를 표시합니다 */}
-        <div className="mt-2 text-sm font-semibold text-gray-600">
-          <p>주소: {address}</p>
+        <div className="p-1 text-sm text-gray-500">
+          <p>
+            <span className="pl-1 font-bold">주소</span>
+            <span className="font-medium"> : {address}</span>
+          </p>
         </div>
       </div>
     );
@@ -119,7 +122,7 @@ export async function NaverStaticMap({
     console.error('네이버 지도 로딩 실패:', error);
 
     return (
-      <div className="w-full rounded-lg border border-red-200 bg-red-50 p-6 text-center">
+      <div className="rounded-lg border border-red-200 bg-red-50 p-6 text-center">
         {/* 18. 에러 아이콘과 메시지를 표시합니다 */}
         <div className="mb-2 text-red-500">
           <svg
