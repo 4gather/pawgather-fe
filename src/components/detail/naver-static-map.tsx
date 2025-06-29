@@ -1,6 +1,9 @@
 import Image from 'next/image';
+import proj4 from 'proj4';
 
+import { NaverMapButton } from '@/components/detail/naver-map-button';
 import { NaverMapProps } from '@/types/types';
+import { EPSG_CODES } from '@/types/types';
 
 export async function NaverStaticMap({
   longitude,
@@ -10,39 +13,37 @@ export async function NaverStaticMap({
   height = 300,
 }: NaverMapProps) {
   try {
-    // 1. 환경변수에서 네이버 API 키들을 가져옵니다 (서버에서만 접근 가능)
+    // 환경변수에서 네이버 API 키 불러옴 (서버에서만 접근 가능)
     const clientId = process.env.NAVER_MAPS_CLIENT_ID;
     const clientSecret = process.env.NAVER_MAPS_CLIENT_SECRET;
 
-    // 2. API 키가 설정되지 않았다면 에러를 발생시킵니다
     if (!clientId || !clientSecret) {
       throw new Error('네이버 지도 API 키가 설정되지 않았습니다');
     }
 
-    // 3. 좌표가 올바른 형식인지 검증합니다 ("경도, 위도" 형식이어야 함)
+    // 좌표가 올바른 형식인지 검증 ("경도, 위도" 형식이어야 함)
     const coordinatePattern = /^-?\d+\.?\d*,-?\d+\.?\d*$/;
     if (!coordinatePattern.test(`${longitude},${latitude}`)) {
       throw new Error('잘못된 좌표 형식입니다');
     }
 
-    // 4. 좌표 - 경도,위도 형식으로 변환
-    const coordinates = `${longitude},${latitude}`; // 경도,위도
-    const markerPosition = `${longitude} ${latitude}`; // 마커는 공백으로 구분
+    // 좌표 - 경도,위도 형식으로 변환
+    const coordinates = `${longitude},${latitude}`;
+    const markerPosition = `${longitude} ${latitude}`;
 
-    // 5. 네이버 Static Map API 엔드포인트 URL을 설정합니다
+    // 네이버 Static Map API 엔드포인트 URL
     const NAVER_API_URL = 'https://maps.apigw.ntruss.com/map-static/v2/raster';
 
-    // 6. 수동으로 쿼리 스트링 생성
+    // 쿼리 스트링 생성
     const queryParams = [
       `w=${width}`,
       `h=${height}`,
-      `center=${coordinates}`, // 경도,위도 순서
+      `center=${coordinates}`,
       `level=15`,
       `format=png`,
-      `markers=type:d|size:mid|pos:${markerPosition}`, // 공백으로 구분된 좌표
+      `markers=type:d|size:mid|pos:${markerPosition}`,
     ].join('&');
 
-    // 7. API 요청
     const response = await fetch(`${NAVER_API_URL}?${queryParams}`, {
       method: 'GET',
       headers: {
@@ -61,7 +62,6 @@ export async function NaverStaticMap({
     //   console.log('Client Secret 존재:', !!clientSecret);
     // }
 
-    // 9. API 응답이 성공적이지 않으면 에러를 발생시킵니다
     if (!response.ok) {
       const errorText = await response.text();
       console.error('API 에러 상세:', {
@@ -76,54 +76,64 @@ export async function NaverStaticMap({
       );
     }
 
-    // 10. 응답받은 이미지 데이터를 바이너리로 변환합니다
+    // 응답받은 이미지 데이터를 바이너리로 변환
     const imageBuffer = await response.arrayBuffer();
 
-    // 11. 바이너리 데이터를 Base64 문자열로 인코딩합니다
+    // 바이너리 데이터를 Base64 문자열로 인코딩
     const base64Image = Buffer.from(imageBuffer).toString('base64');
 
-    // 12. 브라우저에서 사용할 수 있는 Data URL 형식으로 만듭니다
+    // 브라우저에서 사용할 수 있는 Data URL 형식으로 변환
     const dataUrl = `data:image/png;base64,${base64Image}`;
 
+    // 간단한 회색 블러 URL
     const SIMPLE_BLUR_DATA_URL =
       'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmM2Y0ZjYiLz48L3N2Zz4K';
 
-    // 13. Next.js Image 컴포넌트로 최적화된 이미지를 렌더링합니다
+    const lon = Number(longitude);
+    const lat = Number(latitude);
+
+    // 좌표 체계 변환 - EPSG:4326 -> EPSG:3857
+    const result = proj4(
+      EPSG_CODES.WGS84, // 원본 좌표계
+      EPSG_CODES.WEB_MERCATOR, // 변환 좌표계
+      [lon, lat] // 변환할 좌표 배열
+    ) as [number, number];
+
+    const [x, y] = result;
+
+    // NaverMapButton 클릭 시 이동할 URL
+    const linkUrl = `https://map.naver.com/p/entry/address/${x},${y},${address}?c=15.00,0,0,0,dh`;
+
     return (
       <div className="flex w-xs flex-col gap-3">
-        {/* 14. 지도 제목을 표시합니다 */}
         <h3 className="rounded-xs bg-neutral-300/25 p-2 pl-4 text-lg font-semibold text-gray-600">
           오시는 길
         </h3>
 
-        {/* 15. 최적화된 이미지 컴포넌트로 지도를 표시합니다 */}
         <Image
           src={dataUrl} // Base64 데이터 URL
-          alt={`행사장 위치 안내 지도`} // 접근성을 위한 대체 텍스트
-          width={width} // 이미지 가로 크기
-          height={height} // 이미지 세로 크기
+          alt={`행사장 위치 안내 지도`}
+          width={width}
+          height={height}
           priority // 중요한 이미지이므로 우선 로딩
-          className="self-center rounded-lg border border-gray-200 shadow-lg" // 스타일링
+          className="self-center rounded-lg border border-gray-200 shadow-lg"
           placeholder="blur" // 로딩 중 블러 효과
-          blurDataURL={SIMPLE_BLUR_DATA_URL} // 간단한 회색 블러
+          blurDataURL={SIMPLE_BLUR_DATA_URL}
         />
-
-        {/* 16. 지도 하단에 주소 정보를 표시합니다 */}
         <div className="p-1 text-sm text-gray-500">
           <p>
             <span className="pl-1 font-bold">주소</span>
             <span className="font-medium"> : {address}</span>
           </p>
         </div>
+        <NaverMapButton linkUrl={linkUrl} />
       </div>
     );
   } catch (error) {
-    // 17. 에러가 발생했을 때 사용자 친화적인 에러 메시지를 표시합니다
     console.error('네이버 지도 로딩 실패:', error);
 
     return (
       <div className="rounded-lg border border-red-200 bg-red-50 p-6 text-center">
-        {/* 18. 에러 아이콘과 메시지를 표시합니다 */}
         <div className="mb-2 text-red-500">
           <svg
             className="mx-auto h-12 w-12"
