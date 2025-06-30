@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export function EventSummary() {
   return (
-    <div className="flex w-xs flex-col gap-1 p-3 text-gray-600">
+    <div className="flex w-xs flex-col gap-1 text-base text-gray-600">
       <h5 className="pl-3 font-bold">2025 메가주 일산</h5>
       <hr className="my-1 rounded-sm border-3" />
       <p className="pl-3 font-semibold">일자</p>
