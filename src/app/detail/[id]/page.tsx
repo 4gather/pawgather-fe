@@ -45,9 +45,9 @@ export default async function DetailPage({ params }: DetailPageProps) {
         </div>
       ))}
       <NaverStaticMap
-        longitude="127.063287"
-        latitude="37.514575"
-        address="경기도 고양시 일산서구 킨텍스로 271-59"
+        longitude="126.7420642"
+        latitude="37.6646954"
+        address="경기도 고양시 일산서구 킨텍스로 217-59"
       />
     </div>
   );
