@@ -2,8 +2,7 @@ import Image from 'next/image';
 import proj4 from 'proj4';
 
 import { NaverMapButton } from '@/components/detail/naver-map-button';
-import { NaverMapProps } from '@/types/types';
-import { EPSG_CODES } from '@/types/types';
+import { EPSG_CODES, NaverMapProps } from '@/types/types';
 
 export async function NaverStaticMap({
   longitude,
@@ -39,7 +38,7 @@ export async function NaverStaticMap({
       `w=${width}`,
       `h=${height}`,
       `center=${coordinates}`,
-      `level=15`,
+      `level=14`,
       `format=png`,
       `markers=type:d|size:mid|pos:${markerPosition}`,
     ].join('&');
@@ -50,7 +49,6 @@ export async function NaverStaticMap({
         'X-NCP-APIGW-API-KEY-ID': clientId,
         'X-NCP-APIGW-API-KEY': clientSecret,
       },
-      next: { revalidate: 3600 },
     });
 
     // // naver-static-map.tsx에 디버깅 로그 추가
