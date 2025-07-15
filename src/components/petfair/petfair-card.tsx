@@ -4,41 +4,41 @@ import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { Calendar, MapPin } from 'lucide-react';
 
-import { CalendarEvent } from '@/lib/api/mock-calendar';
+import { PetFairList } from '@/lib/types/patfair-types';
 
 interface Props {
-  event: CalendarEvent;
+  petfair: PetFairList;
 }
 
-export function EventCard({ event }: Props) {
-  const startDate = format(event.from, 'M월 d일 (E)', { locale: ko });
-  const endDate = format(event.to, 'M월 d일 (E)', { locale: ko });
-  // const startTime = format(event.from, 'HH:mm');
-  // const endTime = format(event.to, 'HH:mm');
-  const eventLocation = '엑스포';
+export function PetfairCard({ petfair }: Props) {
+  const startDate = format(petfair.startDate, 'M월 d일 (E)', { locale: ko });
+  const endDate = format(petfair.endDate, 'M월 d일 (E)', { locale: ko });
+
+  const eventLocation = petfair.simpleAddress;
 
   // 같은 날인지 확인
   const isSameDay =
-    format(event.from, 'yyyy-MM-dd') === format(event.to, 'yyyy-MM-dd');
+    format(petfair.startDate, 'yyyy-MM-dd') ===
+    format(petfair.endDate, 'yyyy-MM-dd');
 
   return (
     <div className="group bg-card hover:bg-accent/50 active:bg-accent/70 border-border/50 hover:border-border rounded-xl border p-4 shadow-sm transition-all duration-200 hover:shadow-md">
       {/* 헤더 */}
       <div className="mb-3">
         <h2 className="text-foreground group-hover:text-accent-foreground mb-1 text-base leading-tight font-semibold">
-          {event.title}
+          {petfair.title}
         </h2>
 
         {/* 상태 배지 (예: 진행중/예정/종료) */}
-        <div className="flex items-center gap-2">
+        {/* <div className="flex items-center gap-2">
           <span className="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs font-medium">
-            {new Date() < event.from
+            {new Date() < petfair.startDate
               ? '예정'
-              : new Date() > event.to
+              : new Date() > petfair.to
                 ? '종료'
                 : '진행중'}
           </span>
-        </div>
+        </div> */}
       </div>
 
       {/* 날짜 및 시간 정보 */}
