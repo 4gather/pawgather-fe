@@ -1,0 +1,122 @@
+[
+  {
+    "petFairId": 1,
+    "title": "2025 펫페어 코리아",
+    "posterImageUrl": "public/posters/poster1.webp",
+    "startDate": "2025-10-17T10:00:00Z",
+    "endDate": "2025-10-19T15:00:00Z",
+    "simpleAddress": "부산 벡스코"
+  },
+  {
+    "petFairId": 2,
+    "title": "2025 반려동물 박람회",
+    "posterImageUrl": "public/posters/poster2.webp",
+    "startDate": "2025-06-13T10:00:00Z",
+    "endDate": "2025-06-15T15:00:00Z",
+    "simpleAddress": "서울 SETEC"
+  },
+  {
+    "petFairId": 3,
+    "title": "2025 펫 엑스포",
+    "posterImageUrl": "public/posters/poster3.webp",
+    "startDate": "2025-02-01T10:00:00Z",
+    "endDate": "2025-02-04T15:00:00Z",
+    "simpleAddress": "대구 엑스코"
+  },
+  {
+    "petFairId": 4,
+    "title": "2025 메가주 일산(봄)",
+    "posterImageUrl": "public/posters/poster4.webp",
+    "startDate": "2025-04-12T10:00:00Z",
+    "endDate": "2025-04-14T18:00:00Z",
+    "simpleAddress": "킨텍스 1전시장"
+  },
+  {
+    "petFairId": 5,
+    "title": "2025 서울 펫쇼",
+    "posterImageUrl": "public/posters/poster5.webp",
+    "startDate": "2025-09-05T10:00:00Z",
+    "endDate": "2025-09-08T17:00:00Z",
+    "simpleAddress": "코엑스"
+  },
+  {
+    "petFairId": 6,
+    "title": "2025 광주 반려동물 문화축제",
+    "posterImageUrl": "public/posters/poster6.webp",
+    "startDate": "2025-10-31T09:00:00Z",
+    "endDate": "2025-11-02T18:00:00Z",
+    "simpleAddress": "김대중컨벤션센터"
+  },
+  {
+    "petFairId": 7,
+    "title": "2025 메가주 일산(가을)",
+    "posterImageUrl": "public/posters/poster7.webp",
+    "startDate": "2025-10-24T10:00:00Z",
+    "endDate": "2025-10-26T18:00:00Z",
+    "simpleAddress": "킨텍스 2전시장"
+  },
+  {
+    "petFairId": 8,
+    "title": "2025 인천 펫 페스티벌",
+    "posterImageUrl": "public/posters/poster8.webp",
+    "startDate": "2025-07-19T10:00:00Z",
+    "endDate": "2025-07-20T17:00:00Z",
+    "simpleAddress": "송도컨벤시아"
+  },
+  {
+    "petFairId": 9,
+    "title": "2025 대전 반려동물 박람회",
+    "posterImageUrl": "public/posters/poster9.webp",
+    "startDate": "2025-05-17T09:00:00Z",
+    "endDate": "2025-05-18T18:00:00Z",
+    "simpleAddress": "대전컨벤션센터"
+  },
+  {
+    "petFairId": 10,
+    "title": "2025 울산 펫 엑스포",
+    "posterImageUrl": "public/posters/poster10.webp",
+    "startDate": "2025-08-22T10:00:00Z",
+    "endDate": "2025-08-24T17:00:00Z",
+    "simpleAddress": "울산전시컨벤션센터"
+  },
+  {
+    "petFairId": 11,
+    "title": "2025 서울 동물사랑 페스티벌",
+    "posterImageUrl": "public/posters/poster11.webp",
+    "startDate": "2025-03-08T10:00:00Z",
+    "endDate": "2025-03-09T18:00:00Z",
+    "simpleAddress": "서울 aT센터"
+  },
+  {
+    "petFairId": 12,
+    "title": "2025 제주 반려동물 축제",
+    "posterImageUrl": "public/posters/poster12.webp",
+    "startDate": "2025-12-12T09:00:00Z",
+    "endDate": "2025-12-15T17:00:00Z",
+    "simpleAddress": "제주국제컨벤션센터"
+  },
+  {
+    "petFairId": 13,
+    "title": "2025 경기 펫 쇼케이스",
+    "posterImageUrl": "public/posters/poster13.webp",
+    "startDate": "2025-01-25T10:00:00Z",
+    "endDate": "2025-01-28T18:00:00Z",
+    "simpleAddress": "수원컨벤션센터"
+  },
+  {
+    "petFairId": 14,
+    "title": "2025 춘천 반려동물 박람회",
+    "posterImageUrl": "public/posters/poster14.webp",
+    "startDate": "2025-06-27T09:00:00Z",
+    "endDate": "2025-06-29T17:00:00Z",
+    "simpleAddress": "춘천시문화예술회관"
+  },
+  {
+    "petFairId": 15,
+    "title": "2025 청주 펫 위크",
+    "posterImageUrl": "public/posters/poster15.webp",
+    "startDate": "2025-09-18T10:00:00Z",
+    "endDate": "2025-09-22T18:00:00Z",
+    "simpleAddress": "청주국제전시장"
+  }
+]

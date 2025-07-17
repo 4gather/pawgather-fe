@@ -1,9 +1,11 @@
-import { EventCard } from '@/components/events/event-card';
-import { NoEvents } from '@/components/events/no-events';
-import { fetchCalendarEvents } from '@/lib/api/mock-calendar';
+import { NoEvents } from '@/components/petfair/no-events';
+import { PetfairCard } from '@/components/petfair/petfair-card';
 
-export default async function EventListPage() {
-  const events = await fetchCalendarEvents();
+export default async function PetfairListPage() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/petfairs`, {
+    cache: 'no-store',
+  });
+  const petfairs = await res.json();
 
   return (
     <div className="space-y-2">
@@ -11,7 +13,7 @@ export default async function EventListPage() {
       <div className="space-y-2 px-4">
         <h2 className="text-foreground text-lg font-semibold">모든 펫페어</h2>
         <p className="text-muted-foreground text-sm">
-          총 {events.length}개의 이벤트가 있습니다
+          총 {petfairs.length}개의 이벤트가 있습니다
         </p>
       </div>
 
@@ -33,8 +35,10 @@ export default async function EventListPage() {
 
       {/* 이벤트 리스트 */}
       <div className="space-y-3">
-        {events.length > 0 ? (
-          events.map((event) => <EventCard key={event.id} event={event} />)
+        {petfairs.length > 0 ? (
+          petfairs.map((event: any) => (
+            <PetfairCard key={event.petFairId} petfair={event} />
+          ))
         ) : (
           <NoEvents />
         )}
