@@ -1,6 +1,6 @@
-import { EventCard } from '@/components/events/event-card';
+import { PetfairCard } from '@/components/petfair/petfair-card';
 import { NoSearchResult } from '@/components/search/no-search-result';
-import { fetchCalendarEvents } from '@/lib/api/mock-calendar';
+import { PetFairList } from '@/lib/types/patfair-types';
 
 interface SearchPageProps {
   searchParams: Promise<{ q?: string }>;
@@ -10,10 +10,13 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const params = await searchParams;
   const q = params.q?.toLowerCase() || '';
 
-  const events = await fetchCalendarEvents();
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/petfairs`, {
+    cache: 'no-store',
+  });
+  const petfairs = await res.json();
 
-  const filtered = events.filter((event) =>
-    event.title.toLowerCase().includes(q)
+  const filtered = petfairs.filter((petfair: PetFairList) =>
+    petfair.title.toLowerCase().includes(q)
   );
 
   return (
@@ -39,7 +42,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
       {/* 검색 결과 */}
       <div className="space-y-4">
         {filtered.length > 0 ? (
-          filtered.map((event) => <EventCard key={event.id} event={event} />)
+          filtered.map((petfair: PetFairList) => (
+            <PetfairCard key={petfair.petFairId} petfair={petfair} />
+          ))
         ) : (
           <NoSearchResult />
         )}

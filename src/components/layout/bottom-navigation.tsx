@@ -1,5 +1,3 @@
-'use client';
-
 import { CalendarDays, Heart, Home, List, User } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -21,7 +19,7 @@ interface BottomNavigationProps {
 const defaultItems: NavItem[] = [
   { href: '/', icon: Home, label: '홈' },
   { href: '/calendar', icon: CalendarDays, label: '일정' },
-  { href: '/list', icon: List, label: '목록' },
+  { href: '/petfairs', icon: List, label: '목록' },
   { href: '/favorites', icon: Heart, label: '관심' },
   { href: '/mypage', icon: User, label: '마이' },
 ];
