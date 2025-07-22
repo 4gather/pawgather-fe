@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { Calendar, MapPin } from 'lucide-react';
 
-import { PetFairList } from '@/lib/types/patfair-types';
+import { PetFairList } from '@/lib/types/petfair-types';
 
 interface Props {
   petfair: PetFairList;

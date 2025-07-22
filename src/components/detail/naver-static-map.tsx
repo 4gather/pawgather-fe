@@ -2,7 +2,7 @@ import Image from 'next/image';
 import proj4 from 'proj4';
 
 import { NaverMapButton } from '@/components/detail/naver-map-button';
-import { EPSG_CODES, NaverMapProps } from '@/types/types';
+import { EPSG_CODES, NaverMapProps } from '@/lib/types/map-types';
 
 export async function NaverStaticMap({
   longitude,

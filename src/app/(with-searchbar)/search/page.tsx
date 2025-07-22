@@ -1,6 +1,6 @@
 import { PetfairCard } from '@/components/petfair/petfair-card';
 import { NoSearchResult } from '@/components/search/no-search-result';
-import { PetFairList } from '@/lib/types/patfair-types';
+import { PetFairList } from '@/lib/types/petfair-types';
 
 interface SearchPageProps {
   searchParams: Promise<{ q?: string }>;

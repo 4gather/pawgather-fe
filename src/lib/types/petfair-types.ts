@@ -33,3 +33,13 @@ export type PetFairCarousel = Pick<
   PetFairDetail,
   'petFairId' | 'posterImageUrl'
 >;
+
+export type PetFairSummaryData = Pick<
+  PetFairDetail,
+  | 'title'
+  | 'startDate'
+  | 'endDate'
+  | 'simpleAddress'
+  | 'telNumber'
+  | 'petFairUrl'
+>;
