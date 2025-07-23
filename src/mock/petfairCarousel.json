@@ -1,42 +1,42 @@
 [
   {
     "petFairId": 1,
-    "posterImageUrl": "public/posters/poster1.webp"
+    "posterImageUrl": "/posters/poster1.webp"
   },
   {
     "petFairId": 2,
-    "posterImageUrl": "public/posters/poster2.webp"
+    "posterImageUrl": "/posters/poster2.webp"
   },
   {
     "petFairId": 3,
-    "posterImageUrl": "public/posters/poster3.webp"
+    "posterImageUrl": "/posters/poster3.webp"
   },
   {
     "petFairId": 4,
-    "posterImageUrl": "public/posters/poster4.webp"
+    "posterImageUrl": "/posters/poster4.webp"
   },
   {
     "petFairId": 5,
-    "posterImageUrl": "public/posters/poster5.webp"
+    "posterImageUrl": "/posters/poster5.webp"
   },
   {
     "petFairId": 6,
-    "posterImageUrl": "public/posters/poster6.webp"
+    "posterImageUrl": "/posters/poster6.webp"
   },
   {
     "petFairId": 7,
-    "posterImageUrl": "public/posters/poster7.webp"
+    "posterImageUrl": "/posters/poster7.webp"
   },
   {
     "petFairId": 8,
-    "posterImageUrl": "public/posters/poster8.webp"
+    "posterImageUrl": "/posters/poster8.webp"
   },
   {
     "petFairId": 9,
-    "posterImageUrl": "public/posters/poster9.webp"
+    "posterImageUrl": "/posters/poster9.webp"
   },
   {
     "petFairId": 10,
-    "posterImageUrl": "public/posters/poster10.webp"
+    "posterImageUrl": "/posters/poster10.webp"
   }
 ]

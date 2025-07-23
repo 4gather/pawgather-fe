@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { NoEvents } from '@/components/petfair/no-events';
 import { PetfairCard } from '@/components/petfair/petfair-card';
 
@@ -37,7 +39,13 @@ export default async function PetfairListPage() {
       <div className="space-y-3">
         {petfairs.length > 0 ? (
           petfairs.map((event: any) => (
-            <PetfairCard key={event.petFairId} petfair={event} />
+            <Link
+              key={event.petFairId}
+              href={`/detail/${event.petFairId}`}
+              className="block"
+            >
+              <PetfairCard key={event.petFairId} petfair={event} />
+            </Link>
           ))
         ) : (
           <NoEvents />

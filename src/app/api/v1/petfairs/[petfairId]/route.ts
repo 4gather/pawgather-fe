@@ -2,11 +2,10 @@ import { readFile } from 'fs/promises';
 import { NextResponse } from 'next/server';
 import { join } from 'path';
 
-export async function GET({
-  params,
-}: {
-  params: Promise<{ petfairId: string }>;
-}) {
+export async function GET(
+  _request: Request,
+  { params }: { params: Promise<{ petfairId: string }> }
+) {
   try {
     const { petfairId } = await params;
 

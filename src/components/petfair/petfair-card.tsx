@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { Calendar, MapPin } from 'lucide-react';
 
-import { PetFairList } from '@/lib/types/patfair-types';
+import { PetFairList } from '@/lib/types/petfair-types';
 
 interface Props {
   petfair: PetFairList;
@@ -78,9 +78,9 @@ export function PetfairCard({ petfair }: Props) {
             <span>참가 가능</span>
           </div>
 
-          <button className="text-primary hover:text-primary/80 text-sm font-medium transition-colors hover:underline">
+          <span className="text-primary hover:text-primary/80 text-sm font-medium transition-colors hover:underline">
             자세히 보기
-          </button>
+          </span>
         </div>
       </div>
     </div>

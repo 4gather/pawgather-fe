@@ -2,6 +2,7 @@
 
 import { endOfDay, format, isWithinInterval, startOfDay } from 'date-fns';
 import { ko } from 'date-fns/locale';
+import Link from 'next/link';
 
 import { fetchCalendarEvents } from '@/lib/api/mock-calendar';
 
@@ -31,16 +32,17 @@ export function EventList({ selectedDate }: Props) {
   return (
     <div className="mt-6 space-y-4">
       {dayEvents.map((event) => (
-        <div
+        <Link
           key={event.id}
-          className="bg-background rounded-xl border p-4 shadow-sm"
+          href={`/detail/${event.id}`}
+          className="bg-background hover:bg-accent block rounded-xl border p-4 shadow-sm transition-colors"
         >
           <h2 className="text-base font-semibold">{event.title}</h2>
           <p className="text-muted-foreground text-sm">
             {format(event.from, 'yyyy년 M월 d일 (E)', { locale: ko })} ~{' '}
             {format(event.to, 'M월 d일 (E)', { locale: ko })}
           </p>
-        </div>
+        </Link>
       ))}
     </div>
   );
