@@ -24,7 +24,7 @@ export function CarouselContainer({ carouselData }: CarouselContainerProps) {
           loop: true,
           align: 'start',
         }}
-        delay={2000}
+        delay={4000}
       >
         <CarouselContent className="items-start">
           {carouselData.map((item, index) => (
@@ -44,8 +44,8 @@ export function CarouselContainer({ carouselData }: CarouselContainerProps) {
           <CarouselAutoplayButton />
           <SlidePagination />
         </div>
-        <CarouselPrevious className="left-2" />
-        <CarouselNext className="right-2" />
+        <CarouselPrevious className="-left-0.5 size-12" />
+        <CarouselNext className="-right-0.5 size-12" />
       </Carousel>
     </div>
   );
