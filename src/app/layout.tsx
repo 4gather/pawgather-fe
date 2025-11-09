@@ -7,6 +7,7 @@ import React from 'react';
 
 import { BottomNavigation } from '@/components/layout/bottom-navigation';
 import { MobileHeader } from '@/components/layout/mobile-header';
+import { Toaster } from '@/shared/components/ui/sonner';
 import { cn } from '@/shared/lib/utils';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -65,6 +66,34 @@ export default function RootLayout({
           {/* 하단 네비게이션 컴포넌트 */}
           <BottomNavigation />
         </div>
+
+        {/* 모바일 최적화된 Toast 설정 */}
+        <Toaster
+          position="top-center"
+          richColors
+          closeButton
+          expand
+          visibleToasts={3}
+          toastOptions={{
+            style: {
+              background: 'white',
+              border: '1px solid #e5e7eb',
+              borderRadius: '12px',
+              fontSize: '15px',
+              padding: '16px',
+              minWidth: '300px',
+              maxWidth: '90vw', // 모바일에서 화면 넘치지 않게
+            },
+            className: 'shadow-xl',
+            classNames: {
+              success: 'bg-green-50 border-green-200 text-green-800',
+              error: 'bg-red-50 border-red-200 text-red-800',
+              warning: 'bg-yellow-50 border-yellow-200 text-yellow-800',
+              info: 'bg-blue-50 border-blue-200 text-blue-800',
+            },
+            duration: 5000, // 5초
+          }}
+        />
       </body>
     </html>
   );
