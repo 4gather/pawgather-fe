@@ -43,8 +43,7 @@ export default async function DetailPage({ params }: DetailPageProps) {
     );
   }
 
-  const { posterImageUrl, images, longitude, latitude, detailAddress } =
-    details;
+  const { posterImageUrl, images, detailAddress } = details;
 
   const eventSummaryProps: PetFairSummaryData = {
     title: details.title,
@@ -69,11 +68,7 @@ export default async function DetailPage({ params }: DetailPageProps) {
       </div>
       <EventSummary {...eventSummaryProps} />
       <DetailedInformation images={images} />
-      <NaverStaticMap
-        longitude={longitude}
-        latitude={latitude}
-        address={detailAddress}
-      />
+      <NaverStaticMap address={detailAddress} />
     </div>
   );
 }
