@@ -2,7 +2,6 @@
 
 import { z } from 'zod';
 
-import { supabaseBackend } from '@/lib/utils/supabase-backend';
 import {
   emailSchema,
   nicknameSchema,
@@ -72,44 +71,52 @@ export async function checkEmailAction(
     const { email } = validatedFields.data;
     // console.log('🟢 [Server] Validated email:', email);
 
-    // backend_compat.users 테이블에서 중복 체크
-    // console.log('🟡 [Server] Querying Supabase...');
-    const { data, error } = await supabaseBackend
-      .from('users')
-      .select('email')
-      .eq('email', email)
-      .maybeSingle();
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/account/signup/email`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      }
+    );
 
-    // console.log('🟡 [Server] result.data:', data);
-    // console.log('🟡 [Server] result.error:', error);
+    if (!response.ok) {
+      const errorData = await response.json();
+      if (errorData.code === 'CONFLICT_EMAIL') {
+        return {
+          success: false,
+          errors: {
+            email: ['이미 존재하는 Email 입니다.'],
+          },
+        };
+      }
 
-    // 실제 데이터베이스 에러가 발생한 경우만 에러 처리
-    if (error) {
-      console.error('🔴 [Server] Database error:', error);
+      if (errorData.code === 'INVALID_FORMAT_EMAIL') {
+        return {
+          success: false,
+          errors: {
+            email: ['email 형식을 지켜주세요.'],
+          },
+        };
+      }
+
       return {
         success: false,
-        message: '서버 오류가 발생했습니다.',
+        message: errorData.message || '이메일 확인 중 오류가 발생했습니다.',
       };
     }
 
-    if (data) {
-      // console.log('🔴 [Server] Email already exists!');
-      return {
-        success: false,
-        errors: { email: ['이미 존재하는 이메일입니다.'] },
-      };
-    }
-
-    // console.log('🟢 [Server] Email is available!');
     return {
       success: true,
       message: '사용 가능한 이메일입니다.',
     };
   } catch (error) {
-    console.error('🔴 [Server] Unexpected error:', error);
+    console.error('Email check error:', error);
     return {
       success: false,
-      message: '서버 오류가 발생했습니다.',
+      message: '서버와의 통신에 실패했습니다.',
     };
   }
 }
@@ -134,26 +141,40 @@ export async function checkNicknameAction(
 
     const { nickname } = validatedFields.data;
 
-    // backend_compat.users 테이블에서 중복 체크
-    const { data, error } = await supabaseBackend
-      .from('users')
-      .select('nick_name')
-      .eq('nick_name', nickname)
-      .maybeSingle();
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/account/signup/nickname`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ nickname }),
+      }
+    );
 
-    // 실제 데이터베이스 에러가 발생한 경우만 에러 처리
-    if (error) {
-      console.error('Nickname check database error:', error);
+    if (!response.ok) {
+      const errorData = await response.json();
+      if (errorData.code === 'CONFLICT_NICKNAME') {
+        return {
+          success: false,
+          errors: {
+            nickname: ['이미 존재하는 NickName 입니다.'],
+          },
+        };
+      }
+
+      if (errorData.code === 'INVALID_FORMAT_NICKNAME') {
+        return {
+          success: false,
+          errors: {
+            nickname: ['nickname 형식을 지켜주세요.'],
+          },
+        };
+      }
+
       return {
         success: false,
-        message: '서버 오류가 발생했습니다.',
-      };
-    }
-
-    if (data) {
-      return {
-        success: false,
-        errors: { nickname: ['이미 존재하는 닉네임입니다.'] },
+        message: errorData.message || '닉네임 확인 중 오류가 발생했습니다.',
       };
     }
 
@@ -165,7 +186,7 @@ export async function checkNicknameAction(
     console.error('Nickname check error:', error);
     return {
       success: false,
-      message: '서버 오류가 발생했습니다.',
+      message: '서버와의 통신에 실패했습니다.',
     };
   }
 }
@@ -193,50 +214,42 @@ export async function signupAction(
 
     const { email, nickname, password } = validatedFields.data;
 
-    // 1. 이메일 중복 재확인
-    const { data: existingUser } = await supabaseBackend
-      .from('users')
-      .select('email')
-      .eq('email', email)
-      .maybeSingle();
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/account/signup`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          nickname,
+          password,
+        }),
+      }
+    );
 
-    if (existingUser) {
+    if (!response.ok) {
+      const errorData = await response.json();
+      if (errorData.code === 'CONFLICT_USER') {
+        return {
+          success: false,
+          errors: {
+            email: ['이미 가입된 계정입니다.'],
+          },
+        };
+      }
+
+      if (errorData.code === 'VALIDATION_ERROR') {
+        return {
+          success: false,
+          message: errorData.message,
+        };
+      }
+
       return {
         success: false,
-        errors: { email: ['이미 가입된 계정입니다.'] },
-      };
-    }
-
-    // 2. 닉네임 중복 재확인
-    const { data: existingNickname } = await supabaseBackend
-      .from('users')
-      .select('nick_name')
-      .eq('nick_name', nickname)
-      .maybeSingle();
-
-    if (existingNickname) {
-      return {
-        success: false,
-        errors: { nickname: ['이미 존재하는 닉네임입니다.'] },
-      };
-    }
-
-    // 3. 사용자 생성
-    const { error } = await supabaseBackend.from('users').insert({
-      email,
-      password: password,
-      nick_name: nickname,
-      user_created_at: new Date().toISOString(),
-      user_updated_at: new Date().toISOString(),
-      status: 'active',
-      role: 'user',
-    });
-
-    if (error) {
-      console.error('User creation error:', error);
-      return {
-        success: false,
-        message: '회원가입 중 오류가 발생했습니다.',
+        message: errorData.message || '회원가입에 실패했습니다.',
       };
     }
 
@@ -252,7 +265,7 @@ export async function signupAction(
     console.error('Signup action error:', error);
     return {
       success: false,
-      message: '서버 오류가 발생했습니다.',
+      message: '서버와의 통신에 실패했습니다.',
     };
   }
 }
@@ -279,7 +292,7 @@ export async function logoutAction(
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/account`,
       {
-        method: 'GET', // 로그아웃은 GET 요청
+        method: 'GET',
         credentials: 'include', // 쿠키 포함하여 refresh token 삭제
         headers: {
           Authorization: `Bearer ${accessToken}`,
