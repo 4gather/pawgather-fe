@@ -40,7 +40,8 @@ export function MobileHeader({
   const [isPending, startTransition] = useTransition();
 
   // 인증 상태와 사용자 정보 가져오기
-  const { isAuthenticated, user, logout } = useAuthStore();
+  const { isAuthenticated, user, logout, accessToken, isTokenExpired } =
+    useAuthStore();
 
   // 로그아웃 액션 상태 관리
   const [logoutState, logoutActionHandler, logoutPending] = useActionState(
@@ -60,13 +61,24 @@ export function MobileHeader({
 
   // 로그아웃 버튼 클릭 핸들러
   const handleLogoutClick = () => {
+    // accessToken이 없으면 바로 클라이언트 측 로그아웃
+    if (!accessToken || isTokenExpired()) {
+      console.warn(
+        '⚠️ accessToken이 없거나 만료되어 클라이언트 측 로그아웃만 진행합니다'
+      );
+      logout();
+      toast.success('로그아웃되었습니다');
+      router.push('/signin');
+      return;
+    }
+
     startTransition(() => {
       const formData = new FormData(); // 빈 FormData 전달
-      const accessToken = useAuthStore.getState().accessToken;
-
-      if (accessToken) {
-        formData.append('accessToken', accessToken);
-      }
+      formData.append('accessToken', accessToken);
+      // console.log(
+      //   '🟡 서버 로그아웃 요청:',
+      //   accessToken.substring(0, 20) + '...'
+      // );
 
       logoutActionHandler(formData);
     });
@@ -92,12 +104,13 @@ export function MobileHeader({
   // 로그아웃 에러 처리
   useEffect(() => {
     if (logoutState?.error) {
-      toast.error('로그아웃 실패', {
-        description: logoutState.error,
-        duration: 5000,
-      });
+      console.warn('⚠️ 서버 로그아웃 실패, 클라이언트 측 로그아웃 진행');
+      // 서버 로그아웃 실패해도 클라이언트 로그아웃
+      logout();
+      toast.success('로그아웃되었습니다');
+      router.push('/signin');
     }
-  }, [logoutState]);
+  }, [logoutState, logout, router]);
 
   // 마운트되기 전까지는 로그인되지 않은 상태로 렌더링
   const isUserAuthenticated = mounted ? isAuthenticated() : false;

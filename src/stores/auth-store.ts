@@ -36,6 +36,33 @@ interface AuthState {
   handleTokenRefreshError: (error: TokenRefreshError) => void;
   isAuthenticated: () => boolean;
   setLoading: (loading: boolean) => void;
+  isTokenExpired: () => boolean;
+}
+
+// JWT 토큰 만료 확인 유틸리티 함수
+function isTokenExpired(token: string | null): boolean {
+  if (!token) return true;
+
+  try {
+    // JWT는 {header}.{payload}.{signature} 형식
+    const parts = token.split('.');
+    if (parts.length !== 3) return true;
+
+    // Base64 디코딩 (payload 부분)
+    const payload = JSON.parse(atob(parts[1]));
+
+    // exp가 없으면 만료된 것으로 간주
+    if (!payload.exp) return true;
+
+    // 현재 시간과 비교 (exp는 초 단위, Date.now()는 밀리초)
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    // 만료 여부 확인
+    return payload.exp < currentTime;
+  } catch (error) {
+    console.error('Token validation error:', error);
+    return true;
+  }
 }
 
 // Zustand 스토어 생성
@@ -274,7 +301,25 @@ export const useAuthStore = create<AuthState>()(
       // 인증 상태 확인
       isAuthenticated: () => {
         const { accessToken, user } = get();
-        return !!(accessToken && user);
+
+        // user와 accessToken이 모두 있어야 함
+        if (!user || !accessToken) {
+          return false;
+        }
+
+        // 토큰 만료 확인
+        if (isTokenExpired(accessToken)) {
+          console.warn('⚠️ AccessToken이 만료되었습니다');
+          return false;
+        }
+
+        return true;
+      },
+
+      // 토큰 만료 여부 확인 메서드
+      isTokenExpired: () => {
+        const { accessToken } = get();
+        return isTokenExpired(accessToken);
       },
 
       setLoading: (loading) => set({ isLoading: loading }),
