@@ -13,7 +13,7 @@ export function DetailedInformation({ images }: DetailedInformationProps) {
       {images.map((image, index) => (
         <div key={image} className="w-full">
           <Image
-            src={image}
+            src={`/${image}`}
             alt={`상세 내용 ${index + 1}`}
             width={800}
             height={0}

@@ -58,7 +58,7 @@ export default async function DetailPage({ params }: DetailPageProps) {
     <div className="flex flex-col items-center gap-6">
       <div className="flex w-xs flex-col">
         <Image
-          src={posterImageUrl}
+          src={`/${posterImageUrl}`}
           alt="poster"
           width={290}
           height={0}
