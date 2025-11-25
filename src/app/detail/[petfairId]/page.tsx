@@ -14,12 +14,20 @@ export default async function DetailPage({ params }: DetailPageProps) {
   let details: PetFairDetail;
 
   try {
+    console.log(
+      '🔍 요청 URL:',
+      `${process.env.NEXT_PUBLIC_BASE_URL}/petfairs/${petfairId}`
+    );
+    console.log('🔍 BASE_URL:', process.env.NEXT_PUBLIC_BASE_URL);
+
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/petfairs/${petfairId}`,
       {
         method: 'GET',
       }
     );
+
+    console.log('📡 응답 상태:', response.status);
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -33,7 +41,7 @@ export default async function DetailPage({ params }: DetailPageProps) {
     }
 
     details = await response.json();
-    // console.log(details);
+    console.log('response:', details);
   } catch (error) {
     console.error('API 호출 실패:', error);
     return (
@@ -43,8 +51,7 @@ export default async function DetailPage({ params }: DetailPageProps) {
     );
   }
 
-  const { posterImageUrl, images, longitude, latitude, detailAddress } =
-    details;
+  const { posterImageUrl, images, detailAddress } = details;
 
   const eventSummaryProps: PetFairSummaryData = {
     title: details.title,
@@ -59,7 +66,7 @@ export default async function DetailPage({ params }: DetailPageProps) {
     <div className="flex flex-col items-center gap-6">
       <div className="flex w-xs flex-col">
         <Image
-          src={posterImageUrl}
+          src={`/${posterImageUrl}`}
           alt="poster"
           width={290}
           height={0}
@@ -69,11 +76,7 @@ export default async function DetailPage({ params }: DetailPageProps) {
       </div>
       <EventSummary {...eventSummaryProps} />
       <DetailedInformation images={images} />
-      <NaverStaticMap
-        longitude={longitude}
-        latitude={latitude}
-        address={detailAddress}
-      />
+      <NaverStaticMap address={detailAddress} />
     </div>
   );
 }

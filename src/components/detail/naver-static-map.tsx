@@ -2,11 +2,13 @@ import Image from 'next/image';
 import proj4 from 'proj4';
 
 import { NaverMapButton } from '@/components/detail/naver-map-button';
-import { EPSG_CODES, NaverMapProps } from '@/lib/types/map-types';
+import {
+  EPSG_CODES,
+  GeocodingResponse,
+  NaverMapProps,
+} from '@/lib/types/map-types';
 
 export async function NaverStaticMap({
-  longitude,
-  latitude,
   address,
   width = 300,
   height = 300,
@@ -19,6 +21,112 @@ export async function NaverStaticMap({
     if (!clientId || !clientSecret) {
       throw new Error('네이버 지도 API 키가 설정되지 않았습니다');
     }
+
+    // Geocoding API 호출하여 주소를 좌표로 변환
+    const GEOCODING_API_URL =
+      'https://maps.apigw.ntruss.com/map-geocode/v2/geocode';
+
+    // 주소가 비어있는지 확인
+    if (!address || address.trim() === '') {
+      throw new Error('주소가 제공되지 않았습니다');
+    }
+
+    // const geocodingUrl = `${GEOCODING_API_URL}?query=${encodeURIComponent(address)}`;
+
+    // // 디버깅: 요청 정보 출력
+    // console.log('=== Geocoding API 요청 시작 ===');
+    // console.log('URL:', geocodingUrl);
+    // console.log('Address:', address);
+    // console.log('Client ID:', clientId ? '설정됨' : '없음');
+    // console.log('Client Secret:', clientSecret ? '설정됨' : '없음');
+
+    const geocodingResponse = await fetch(
+      `${GEOCODING_API_URL}?query=${encodeURIComponent(address)}`,
+      {
+        method: 'GET',
+        headers: {
+          'X-NCP-APIGW-API-KEY-ID': clientId,
+          'X-NCP-APIGW-API-KEY': clientSecret,
+          Accept: 'application/json',
+        },
+        //  캐시 비활성화 (Next.js 캐싱 문제 방지)
+        cache: 'no-store',
+      }
+    );
+
+    // // 응답 상태 먼저 확인
+    // console.log('=== Geocoding API 응답 상태 ===');
+    // console.log('Status:', geocodingResponse.status);
+    // console.log('Status Text:', geocodingResponse.statusText);
+    // console.log(
+    //   'Headers:',
+    //   Object.fromEntries(geocodingResponse.headers.entries())
+    // );
+
+    // 응답 본문을 텍스트로 먼저 읽기 (한 번만 읽을 수 있으므로 주의)
+    const responseText = await geocodingResponse.text();
+
+    // console.log('=== Geocoding API 응답 본문 ===');
+    // console.log('Response Text:', responseText);
+    // console.log('Response Length:', responseText.length);
+
+    // 응답이 비어있는지 확인
+    if (!responseText || responseText.trim() === '') {
+      console.error('❌ 응답 본문이 비어있습니다');
+      throw new Error(
+        'Geocoding API 응답이 비어있습니다. API 키를 확인해주세요.'
+      );
+    }
+
+    // HTTP 상태 코드 확인
+    if (!geocodingResponse.ok) {
+      console.error('❌ HTTP 에러 발생:', {
+        status: geocodingResponse.status,
+        statusText: geocodingResponse.statusText,
+        body: responseText,
+      });
+      throw new Error(
+        `Geocoding API HTTP 에러 (${geocodingResponse.status}): ${responseText}`
+      );
+    }
+
+    // JSON 파싱 시도
+    let geocodingData: GeocodingResponse;
+    try {
+      geocodingData = JSON.parse(responseText);
+      console.log('✅ JSON 파싱 성공:', geocodingData);
+    } catch (parseError) {
+      console.error('❌ JSON 파싱 실패:', {
+        error: parseError,
+        responseText: responseText.substring(0, 200), // 처음 200자만 출력
+      });
+      throw new Error(
+        `JSON 파싱 실패. 응답 내용: ${responseText.substring(0, 100)}...`
+      );
+    }
+
+    // API 응답 상태 확인 (status 필드)
+    if (geocodingData.status !== 'OK') {
+      console.error('❌ API 상태 에러:', {
+        status: geocodingData.status,
+        errorMessage: (geocodingData as any).errorMessage,
+      });
+      throw new Error(
+        `Geocoding API 에러 상태: ${geocodingData.status} - ${(geocodingData as any).errorMessage || '알 수 없는 오류'}`
+      );
+    }
+
+    // 주소 결과 확인
+    if (!geocodingData.addresses || geocodingData.addresses.length === 0) {
+      console.error('❌ 주소 검색 결과 없음:', {
+        query: address,
+        response: geocodingData,
+      });
+      throw new Error(`"${address}"에 대한 좌표를 찾을 수 없습니다`);
+    }
+
+    // addresses 배열의 첫 번째 결과 사용
+    const { x: longitude, y: latitude } = geocodingData.addresses[0];
 
     // 좌표가 올바른 형식인지 검증 ("경도, 위도" 형식이어야 함)
     const coordinatePattern = /^-?\d+\.?\d*,-?\d+\.?\d*$/;
@@ -49,6 +157,8 @@ export async function NaverStaticMap({
         'X-NCP-APIGW-API-KEY-ID': clientId,
         'X-NCP-APIGW-API-KEY': clientSecret,
       },
+      //  캐시 비활성화 (Next.js 캐싱 문제 방지)
+      cache: 'no-store',
     });
 
     // // naver-static-map.tsx에 디버깅 로그 추가

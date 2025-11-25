@@ -2,7 +2,7 @@
   {
     "petFairId": 1,
     "title": "2025 펫페어 코리아",
-    "posterImageUrl": "/posters/poster1.webp",
+    "posterImageUrl": "posters/poster1.webp",
     "startDate": "2025-10-17T10:00:00Z",
     "endDate": "2025-10-19T15:00:00Z",
     "simpleAddress": "부산 벡스코",
@@ -16,15 +16,15 @@
     "createdAt": "2025-05-27T14:20:00Z",
     "updatedAt": "2025-05-29T11:20:00Z",
     "images": [
-      "/contents/1/content1-1.webp",
-      "/contents/1/content1-2.webp",
-      "/contents/1/content1-3.webp"
+      "contents/1/content1-1.webp",
+      "contents/1/content1-2.webp",
+      "contents/1/content1-3.webp"
     ]
   },
   {
     "petFairId": 2,
     "title": "2025 반려동물 박람회",
-    "posterImageUrl": "/posters/poster2.webp",
+    "posterImageUrl": "posters/poster2.webp",
     "startDate": "2025-06-13T10:00:00Z",
     "endDate": "2025-06-15T15:00:00Z",
     "simpleAddress": "서울 SETEC",
@@ -38,17 +38,17 @@
     "createdAt": "2025-05-28T14:20:00Z",
     "updatedAt": "2025-05-30T12:20:00Z",
     "images": [
-      "/contents/2/content2-1.webp",
-      "/contents/2/content2-2.webp",
-      "/contents/2/content2-3.webp",
-      "/contents/2/content2-4.webp",
-      "/contents/2/content2-5.webp"
+      "contents/2/content2-1.webp",
+      "contents/2/content2-2.webp",
+      "contents/2/content2-3.webp",
+      "contents/2/content2-4.webp",
+      "contents/2/content2-5.webp"
     ]
   },
   {
     "petFairId": 3,
     "title": "2025 펫 엑스포",
-    "posterImageUrl": "/posters/poster3.webp",
+    "posterImageUrl": "posters/poster3.webp",
     "startDate": "2025-02-01T10:00:00Z",
     "endDate": "2025-02-04T15:00:00Z",
     "simpleAddress": "대구 엑스코",
@@ -62,17 +62,17 @@
     "createdAt": "2025-06-23T14:20:00Z",
     "updatedAt": "2025-06-23T21:20:00Z",
     "images": [
-      "/contents/3/content3-1.webp",
-      "/contents/3/content3-2.webp",
-      "/contents/3/content3-3.webp",
-      "/contents/3/content3-4.webp",
-      "/contents/3/content3-5.webp"
+      "contents/3/content3-1.webp",
+      "contents/3/content3-2.webp",
+      "contents/3/content3-3.webp",
+      "contents/3/content3-4.webp",
+      "contents/3/content3-5.webp"
     ]
   },
   {
     "petFairId": 4,
     "title": "2025 메가주 일산(봄)",
-    "posterImageUrl": "/posters/poster4.webp",
+    "posterImageUrl": "posters/poster4.webp",
     "startDate": "2025-04-12T10:00:00Z",
     "endDate": "2025-04-14T18:00:00Z",
     "simpleAddress": "킨텍스 1전시장",
@@ -86,17 +86,17 @@
     "createdAt": "2025-03-15T09:30:00Z",
     "updatedAt": "2025-04-01T16:45:00Z",
     "images": [
-      "/contents/4/content4-1.webp",
-      "/contents/4/content4-2.webp",
-      "/contents/4/content4-3.webp",
-      "/contents/4/content4-4.webp",
-      "/contents/4/content4-5.webp"
+      "contents/4/content4-1.webp",
+      "contents/4/content4-2.webp",
+      "contents/4/content4-3.webp",
+      "contents/4/content4-4.webp",
+      "contents/4/content4-5.webp"
     ]
   },
   {
     "petFairId": 5,
     "title": "2025 서울 펫쇼",
-    "posterImageUrl": "/posters/poster5.webp",
+    "posterImageUrl": "posters/poster5.webp",
     "startDate": "2025-09-05T10:00:00Z",
     "endDate": "2025-09-08T17:00:00Z",
     "simpleAddress": "코엑스",
@@ -110,17 +110,17 @@
     "createdAt": "2025-08-10T11:00:00Z",
     "updatedAt": "2025-08-25T14:30:00Z",
     "images": [
-      "/contents/5/content5-1.webp",
-      "/contents/5/content5-2.webp",
-      "/contents/5/content5-3.webp",
-      "/contents/5/content5-4.webp",
-      "/contents/5/content5-5.webp"
+      "contents/5/content5-1.webp",
+      "contents/5/content5-2.webp",
+      "contents/5/content5-3.webp",
+      "contents/5/content5-4.webp",
+      "contents/5/content5-5.webp"
     ]
   },
   {
     "petFairId": 6,
     "title": "2025 광주 반려동물 문화축제",
-    "posterImageUrl": "/posters/poster6.webp",
+    "posterImageUrl": "posters/poster6.webp",
     "startDate": "2025-10-31T09:00:00Z",
     "endDate": "2025-11-02T18:00:00Z",
     "simpleAddress": "김대중컨벤션센터",
@@ -134,21 +134,21 @@
     "createdAt": "2025-09-20T13:15:00Z",
     "updatedAt": "2025-10-15T10:22:00Z",
     "images": [
-      "/contents/6/content6-1.webp",
-      "/contents/6/content6-2.webp",
-      "/contents/6/content6-3.webp",
-      "/contents/6/content6-4.webp",
-      "/contents/6/content6-5.webp"
+      "contents/6/content6-1.webp",
+      "contents/6/content6-2.webp",
+      "contents/6/content6-3.webp",
+      "contents/6/content6-4.webp",
+      "contents/6/content6-5.webp"
     ]
   },
   {
     "petFairId": 7,
     "title": "2025 메가주 일산(가을)",
-    "posterImageUrl": "/posters/poster7.webp",
+    "posterImageUrl": "posters/poster7.webp",
     "startDate": "2025-10-24T10:00:00Z",
     "endDate": "2025-10-26T18:00:00Z",
     "simpleAddress": "킨텍스 2전시장",
-    "detailAddress": "경기도 고양시 일산서구 킨텍스로 271-59",
+    "detailAddress": "경기도 고양시 일산서구 킨텍스로 217-59",
     "petFairUrl": "https://example.com/petfair/2025_7",
     "content": "2025 메가주 일산(가을) 설명입니다.",
     "latitude": "37.514575",
@@ -158,17 +158,17 @@
     "createdAt": "2025-09-01T08:45:00Z",
     "updatedAt": "2025-10-10T15:30:00Z",
     "images": [
-      "/contents/7/content7-1.webp",
-      "/contents/7/content7-2.webp",
-      "/contents/7/content7-3.webp",
-      "/contents/7/content7-4.webp",
-      "/contents/7/content7-5.webp"
+      "contents/7/content7-1.webp",
+      "contents/7/content7-2.webp",
+      "contents/7/content7-3.webp",
+      "contents/7/content7-4.webp",
+      "contents/7/content7-5.webp"
     ]
   },
   {
     "petFairId": 8,
     "title": "2025 인천 펫 페스티벌",
-    "posterImageUrl": "/posters/poster8.webp",
+    "posterImageUrl": "posters/poster8.webp",
     "startDate": "2025-07-19T10:00:00Z",
     "endDate": "2025-07-20T17:00:00Z",
     "simpleAddress": "송도컨벤시아",
@@ -182,17 +182,17 @@
     "createdAt": "2025-06-01T12:20:00Z",
     "updatedAt": "2025-07-05T09:15:00Z",
     "images": [
-      "/contents/8/content8-1.webp",
-      "/contents/8/content8-2.webp",
-      "/contents/8/content8-3.webp",
-      "/contents/8/content8-4.webp",
-      "/contents/8/content8-5.webp"
+      "contents/8/content8-1.webp",
+      "contents/8/content8-2.webp",
+      "contents/8/content8-3.webp",
+      "contents/8/content8-4.webp",
+      "contents/8/content8-5.webp"
     ]
   },
   {
     "petFairId": 9,
     "title": "2025 대전 반려동물 박람회",
-    "posterImageUrl": "/posters/poster9.webp",
+    "posterImageUrl": "posters/poster9.webp",
     "startDate": "2025-05-17T09:00:00Z",
     "endDate": "2025-05-18T18:00:00Z",
     "simpleAddress": "대전컨벤션센터",
@@ -206,17 +206,17 @@
     "createdAt": "2025-04-10T14:35:00Z",
     "updatedAt": "2025-05-01T11:45:00Z",
     "images": [
-      "/contents/9/content9-1.webp",
-      "/contents/9/content9-2.webp",
-      "/contents/9/content9-3.webp",
-      "/contents/9/content9-4.webp",
-      "/contents/9/content9-5.webp"
+      "contents/9/content9-1.webp",
+      "contents/9/content9-2.webp",
+      "contents/9/content9-3.webp",
+      "contents/9/content9-4.webp",
+      "contents/9/content9-5.webp"
     ]
   },
   {
     "petFairId": 10,
     "title": "2025 울산 펫 엑스포",
-    "posterImageUrl": "/posters/poster10.webp",
+    "posterImageUrl": "posters/poster10.webp",
     "startDate": "2025-08-22T10:00:00Z",
     "endDate": "2025-08-24T17:00:00Z",
     "simpleAddress": "울산전시컨벤션센터",
@@ -230,17 +230,17 @@
     "createdAt": "2025-07-15T16:20:00Z",
     "updatedAt": "2025-08-10T13:40:00Z",
     "images": [
-      "/contents/10/content10-1.webp",
-      "/contents/10/content10-2.webp",
-      "/contents/10/content10-3.webp",
-      "/contents/10/content10-4.webp",
-      "/contents/10/content10-5.webp"
+      "contents/10/content10-1.webp",
+      "contents/10/content10-2.webp",
+      "contents/10/content10-3.webp",
+      "contents/10/content10-4.webp",
+      "contents/10/content10-5.webp"
     ]
   },
   {
     "petFairId": 11,
     "title": "2025 서울 동물사랑 페스티벌",
-    "posterImageUrl": "/posters/poster11.webp",
+    "posterImageUrl": "posters/poster11.webp",
     "startDate": "2025-03-08T10:00:00Z",
     "endDate": "2025-03-09T18:00:00Z",
     "simpleAddress": "서울 aT센터",
@@ -254,17 +254,17 @@
     "createdAt": "2025-02-01T10:25:00Z",
     "updatedAt": "2025-02-25T14:50:00Z",
     "images": [
-      "/contents/11/content11-1.webp",
-      "/contents/11/content11-2.webp",
-      "/contents/11/content11-3.webp",
-      "/contents/11/content11-4.webp",
-      "/contents/11/content11-5.webp"
+      "contents/11/content11-1.webp",
+      "contents/11/content11-2.webp",
+      "contents/11/content11-3.webp",
+      "contents/11/content11-4.webp",
+      "contents/11/content11-5.webp"
     ]
   },
   {
     "petFairId": 12,
     "title": "2025 제주 반려동물 축제",
-    "posterImageUrl": "/posters/poster12.webp",
+    "posterImageUrl": "posters/poster12.webp",
     "startDate": "2025-12-12T09:00:00Z",
     "endDate": "2025-12-15T17:00:00Z",
     "simpleAddress": "제주국제컨벤션센터",
@@ -278,17 +278,17 @@
     "createdAt": "2025-11-01T09:30:00Z",
     "updatedAt": "2025-11-30T16:15:00Z",
     "images": [
-      "/contents/12/content12-1.webp",
-      "/contents/12/content12-2.webp",
-      "/contents/12/content12-3.webp",
-      "/contents/12/content12-4.webp",
-      "/contents/12/content12-5.webp"
+      "contents/12/content12-1.webp",
+      "contents/12/content12-2.webp",
+      "contents/12/content12-3.webp",
+      "contents/12/content12-4.webp",
+      "contents/12/content12-5.webp"
     ]
   },
   {
     "petFairId": 13,
     "title": "2025 경기 펫 쇼케이스",
-    "posterImageUrl": "/posters/poster13.webp",
+    "posterImageUrl": "posters/poster13.webp",
     "startDate": "2025-01-25T10:00:00Z",
     "endDate": "2025-01-28T18:00:00Z",
     "simpleAddress": "수원컨벤션센터",
@@ -302,17 +302,17 @@
     "createdAt": "2025-01-05T11:40:00Z",
     "updatedAt": "2025-01-20T08:25:00Z",
     "images": [
-      "/contents/13/content13-1.webp",
-      "/contents/13/content13-2.webp",
-      "/contents/13/content13-3.webp",
-      "/contents/13/content13-4.webp",
-      "/contents/13/content13-5.webp"
+      "contents/13/content13-1.webp",
+      "contents/13/content13-2.webp",
+      "contents/13/content13-3.webp",
+      "contents/13/content13-4.webp",
+      "contents/13/content13-5.webp"
     ]
   },
   {
     "petFairId": 14,
     "title": "2025 춘천 반려동물 박람회",
-    "posterImageUrl": "/posters/poster14.webp",
+    "posterImageUrl": "posters/poster14.webp",
     "startDate": "2025-06-27T09:00:00Z",
     "endDate": "2025-06-29T17:00:00Z",
     "simpleAddress": "춘천시문화예술회관",
@@ -326,17 +326,17 @@
     "createdAt": "2025-05-20T15:10:00Z",
     "updatedAt": "2025-06-15T12:30:00Z",
     "images": [
-      "/contents/14/content14-1.webp",
-      "/contents/14/content14-2.webp",
-      "/contents/14/content14-3.webp",
-      "/contents/14/content14-4.webp",
-      "/contents/14/content14-5.webp"
+      "contents/14/content14-1.webp",
+      "contents/14/content14-2.webp",
+      "contents/14/content14-3.webp",
+      "contents/14/content14-4.webp",
+      "contents/14/content14-5.webp"
     ]
   },
   {
     "petFairId": 15,
     "title": "2025 청주 펫 위크",
-    "posterImageUrl": "/posters/poster15.webp",
+    "posterImageUrl": "posters/poster15.webp",
     "startDate": "2025-09-18T10:00:00Z",
     "endDate": "2025-09-22T18:00:00Z",
     "simpleAddress": "청주국제전시장",
@@ -350,11 +350,11 @@
     "createdAt": "2025-08-25T13:55:00Z",
     "updatedAt": "2025-09-10T17:20:00Z",
     "images": [
-      "/contents/15/content15-1.webp",
-      "/contents/15/content15-2.webp",
-      "/contents/15/content15-3.webp",
-      "/contents/15/content15-4.webp",
-      "/contents/15/content15-5.webp"
+      "contents/15/content15-1.webp",
+      "contents/15/content15-2.webp",
+      "contents/15/content15-3.webp",
+      "contents/15/content15-4.webp",
+      "contents/15/content15-5.webp"
     ]
   }
 ]
