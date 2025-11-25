@@ -14,12 +14,20 @@ export default async function DetailPage({ params }: DetailPageProps) {
   let details: PetFairDetail;
 
   try {
+    console.log(
+      '🔍 요청 URL:',
+      `${process.env.NEXT_PUBLIC_BASE_URL}/petfairs/${petfairId}`
+    );
+    console.log('🔍 BASE_URL:', process.env.NEXT_PUBLIC_BASE_URL);
+
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/petfairs/${petfairId}`,
       {
         method: 'GET',
       }
     );
+
+    console.log('📡 응답 상태:', response.status);
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -33,7 +41,7 @@ export default async function DetailPage({ params }: DetailPageProps) {
     }
 
     details = await response.json();
-    // console.log(details);
+    console.log('response:', details);
   } catch (error) {
     console.error('API 호출 실패:', error);
     return (
