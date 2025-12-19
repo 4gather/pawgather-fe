@@ -3,6 +3,9 @@ import js from '@eslint/js'; // ESLint의 기본 JavaScript 룰 세트
 import parser from '@typescript-eslint/parser'; // TypeScript 문법 파싱용 파서
 import tsPlugin from '@typescript-eslint/eslint-plugin'; // TypeScript 전용 룰 제공
 
+// Next.js 플러그인 추가
+import nextPlugin from '@next/eslint-plugin-next';
+
 // 글로벌 변수 설정 (Node.js, Browser 환경 지원)
 import globals from 'globals';
 
@@ -35,7 +38,7 @@ export default [
     },
   },
 
-  // TypeScript + React + TailwindCSS
+  // TypeScript + React + Next.js + TailwindCSS
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
@@ -58,6 +61,7 @@ export default [
       react: reactPlugin,
       'react-hooks': reactHooks,
       '@typescript-eslint': tsPlugin,
+      '@next/next': nextPlugin,
     },
     rules: {
       // React Hooks
@@ -68,6 +72,12 @@ export default [
       // React
       'react/react-in-jsx-scope': 'off',
       'react/jsx-uses-react': 'off',
+
+      // Next.js 👈 추가 (권장 룰들만)
+      ...(nextPlugin.configs.recommended?.rules || {}),
+      '@next/next/no-html-link-for-pages': 'warn',
+      '@next/next/no-img-element': 'warn',
+      '@next/next/no-page-custom-font': 'off', // 필요시 조정
 
       // Import
       'import/no-unresolved': 'off',
