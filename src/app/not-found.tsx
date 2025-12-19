@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
@@ -11,12 +13,12 @@ export default function NotFound() {
         요청하신 페이지가 사라졌거나, <br />
         잘못된 주소를 입력하셨을 수 있어요.
       </p>
-      <a
+      <Link
         href="/"
         className="mt-8 rounded-full bg-gradient-to-r from-blue-400 to-pink-400 px-6 py-3 font-semibold text-white shadow-lg transition-transform duration-200 hover:scale-105"
       >
         홈으로 돌아가기
-      </a>
+      </Link>
       <div className="mt-12 opacity-60">
         <svg width="120" height="120" fill="none" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="10" fill="#f472b6" />
