@@ -219,6 +219,7 @@ const config: Config = {
     require('tw-animate-css'),
 
     // 커스텀 유틸리티 클래스
+    // eslint-disable-next-line unused-imports/no-unused-vars
     function ({ addUtilities, theme }: any) {
       const newUtilities = {
         // 안전 영역 패딩 (모바일 노치 대응)
